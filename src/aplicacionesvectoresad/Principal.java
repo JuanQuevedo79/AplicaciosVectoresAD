@@ -170,16 +170,28 @@ public class Principal extends javax.swing.JFrame {
 
     private void cmdLlenarManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLlenarManualActionPerformed
         double n;
+        int sw;
         for (int i = 0; i < v.length; i++) {
-          n = Double.parseDouble(JOptionPane.showInputDialog(this,"Didigite el elemento en la posicion"+i));
+         do {
+        sw=1; 
+        try{
+            n = Double.parseDouble(JOptionPane.showInputDialog(this,"Didigite el elemento en la posicion"+i));
                     v[i] = n ;
-        
+         }catch(NumberFormatException e){
+             JOptionPane.showMessageDialog(this, "Digite un numero valido","Error",JOptionPane.ERROR_MESSAGE);
+         }catch(NullPointerException e){
+             JOptionPane.showMessageDialog(this, "No puede salir","Error",JOptionPane.ERROR_MESSAGE);
+        }
+        }while (sw==0);
+    }
+    
+
         cmdCrear.setEnabled(false);
         cmdLlenarManual.setEnabled(false);
         cmdLlenarAutomatico.setEnabled(false);
         cmdMostrar.setEnabled(true);
         cmdBorrar.setEnabled(true);
-        }
+        
     }//GEN-LAST:event_cmdLlenarManualActionPerformed
 
     private void cmdMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdMostrarActionPerformed
